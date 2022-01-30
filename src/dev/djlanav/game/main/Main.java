@@ -8,16 +8,16 @@ import dev.djlanav.game.tools.Vector2f;
 public class Main {
 	
 	// Declare objects
-	public static Player player;
+	public Player player;
 	
-	private static String selectedName;
+	private String selectedName;
 	
-	private static void init() {
+	private void init() {
 		player = new Player(new Vector2f(0, 0), selectedName, 100, 100, 100);
 		System.out.println(player.getName());
 	}
 	
-	private static void setPlayerName() {
+	private void setPlayerName() {
 		Scanner nameScanner = new Scanner(System.in);
 		System.out.print("\nWhat would you like the player's name to be? ");
 		selectedName = nameScanner.nextLine();
@@ -26,7 +26,7 @@ public class Main {
 		System.out.println("Your name is " + selectedName + "!\n");
 	}
 	
-	private static void menu() {
+	private void menu() {
 		String choice;
 		
 		System.out.println("=== TEST GAME ===");
@@ -48,6 +48,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		menu();
+		Main main = new Main();
+		main.menu();
 	}
 }

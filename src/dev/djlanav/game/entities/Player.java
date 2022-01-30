@@ -2,6 +2,7 @@ package dev.djlanav.game.entities;
 
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Scanner;
 
 import dev.djlanav.game.tools.Vector2f;
 import dev.djlanav.game.world.Tile;
@@ -12,6 +13,8 @@ public class Player {
 	private String name;
 	private String currentAxeType;
 	
+	private static final int TILE_DAMAGE_MODIFER = 5; // The least it can be is five for "Wood" type axes
+	
 	private int health;
 	private int stamina;
 	private int mana;
@@ -20,7 +23,7 @@ public class Player {
 	
 	// Allocations
 	private HashMap<String ,Integer> attacks = new HashMap<String ,Integer>();
-	private String[] axeTypes = { "Wood", "Stone", "Iron", "Copper", "Diamond" };
+	private String[] axeTypes = { "Wood", "Stone", "Copper", "Iron", "Diamond" };
 	private Random rand = new Random();
 	
 	// public variables
@@ -56,11 +59,29 @@ public class Player {
 		return damage;
 	}
 	
-	public void breakTile(Tile tile) {
-		if (currentAxeType.equals(axeTypes[0]) && tile.getBreakTime() > tile.getBreakTime() - 5) {
-			tile.setBreakTime(tile.getBreakTime() - 5); // What
-			tile.setTileHP(tile.getTileHP() - tile.getBreakTime());
+	public void breakTile(Tile tile) { // I'll probably change this "else-if chain" a lot. Wish I could use a switch statement but I don't think I can.
+		if (currentAxeType.equals(axeTypes[0])) {
+			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER);
+			
+		} else if (currentAxeType.equals(axeTypes[1])) {
+			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 2);
+			
+		} else if (currentAxeType.equals(axeTypes[2])) {
+			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 4);
+			
+		} else if (currentAxeType.equals(axeTypes[3])) {
+			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 8);
+			
+		} else if (currentAxeType.equals(axeTypes[4])) {
+			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 16);
 		}
+	}
+	
+	public void selectTool() {
+		String selectedTool;
+		Scanner toolChoice = new Scanner(System.in);
+		
+		System.out.println("Select a tool: ");
 	}
 
 	public Vector2f getPosition() {
