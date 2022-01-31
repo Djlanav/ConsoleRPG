@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import dev.djlanav.game.items.StoneSword;
+import dev.djlanav.game.playerutils.Inventory;
 import dev.djlanav.game.tools.Vector2f;
 import dev.djlanav.game.world.Tile;
 
@@ -26,9 +28,10 @@ public class Player {
 	private String[] axeTypes = { "Wood", "Stone", "Copper", "Iron", "Diamond" };
 	private Random rand = new Random();
 	
+	private Inventory inv = new Inventory();
+	
 	// public variables
 	public int enemyDamageTaken;
-		
 	
 	public Player(Vector2f startPos, String name, int health, int stamina, int mana) {
 		this.position = startPos;
