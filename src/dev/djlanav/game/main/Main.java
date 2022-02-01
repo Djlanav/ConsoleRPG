@@ -14,6 +14,8 @@ public class Main {
 	private static void init() {
 		world = new World();
 		world.generateWorld();
+		
+		world.getPlayer().displayStats();
 	}
 	
 	private static void setPlayerName() {

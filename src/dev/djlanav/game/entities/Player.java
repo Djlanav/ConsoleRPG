@@ -20,6 +20,7 @@ public class Player {
 	private int health;
 	private int stamina;
 	private int mana;
+	private int level;
 	
 	private int damageTaken;
 	
@@ -33,15 +34,31 @@ public class Player {
 	// public variables
 	public int enemyDamageTaken;
 	
-	public Player(Vector2f startPos, String name, int health, int stamina, int mana) {
+	// Constructor
+	public Player(Vector2f startPos, String name, int health, int stamina, int mana, int level) {
 		this.position = startPos;
 		this.name = name;
 		this.health = health;
 		this.stamina = stamina;
 		this.mana = mana;
+		this.level = level;
 	
 		attacks.put("Punch", 1);
 		attacks.put("Kick", 2);
+	}
+	
+	public void displayStats() {
+		System.out.println("=== PLAYER INFORMATION ===");
+		
+		System.out.println("Name: " + name);
+		System.out.println("Level: " + level);
+		System.out.println("HP: " + health);
+		System.out.println("Mana: " + mana);
+		System.out.println("Stamina: " + stamina);
+		
+		displayInventory();
+		System.out.println("==========================");
+		System.out.println("\n");
 	}
 	
 	public void attack() {
@@ -67,25 +84,35 @@ public class Player {
 			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER);
 			
 		} else if (currentAxeType.equals(axeTypes[1])) {
-			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 2);
+			tile.setTileHP(tile.getTileHP() - (TILE_DAMAGE_MODIFER * 2));
 			
 		} else if (currentAxeType.equals(axeTypes[2])) {
-			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 4);
+			tile.setTileHP(tile.getTileHP() - (TILE_DAMAGE_MODIFER * 4));
 			
 		} else if (currentAxeType.equals(axeTypes[3])) {
-			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 8);
+			tile.setTileHP(tile.getTileHP() - (TILE_DAMAGE_MODIFER * 8));
 			
 		} else if (currentAxeType.equals(axeTypes[4])) {
-			tile.setTileHP(tile.getTileHP() - TILE_DAMAGE_MODIFER * 16);
+			tile.setTileHP(tile.getTileHP() - (TILE_DAMAGE_MODIFER * 16));
 		}
 	}
 	
+	private void displayInventory() {
+		if (inv.getItems().size() <= 0) {
+			System.out.print("You have " + inv.getItems().size() + " items in your inventory. \n");
+		} else if (inv.getItems().size() >= 1) {
+			System.out.print("You have " + inv.getItems().size() + " item(s) in your inventory: ");
+			inv.displayInv();
+		}
+	}
+	
+	/*
 	public void selectTool() {
 		String selectedTool;
 		Scanner toolChoice = new Scanner(System.in);
 		
 		System.out.println("Select a tool: ");
-	}
+	} */
 
 	public Vector2f getPosition() {
 		return position;
@@ -137,5 +164,13 @@ public class Player {
 
 	public int getDamageTaken() {
 		return damageTaken;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
 	}
 }

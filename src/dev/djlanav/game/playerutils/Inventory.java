@@ -24,8 +24,13 @@ public class Inventory {
 	}
 	
 	public void displayInv() {
-		for (Item item : items) {
-			System.out.println(item + ",");
+		for (int i = 0; i < items.size(); i++) {
+			if (items.size() == 1) {
+				System.out.println(items.get(i).getName());
+				break;
+			} else if (items.size() > 1) {
+				System.out.println(items.get(i).getName() + ", ");
+			}
 		}
 	}
 
@@ -35,5 +40,9 @@ public class Inventory {
 
 	public void setCurrentlySelectedItem(String currentlySelectedItem) {
 		this.currentlySelectedItem = currentlySelectedItem;
+	}
+
+	public LinkedList<Item> getItems() {
+		return items;
 	}
 }

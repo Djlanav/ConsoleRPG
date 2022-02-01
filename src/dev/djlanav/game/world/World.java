@@ -9,7 +9,7 @@ import dev.djlanav.game.tools.Vector2f;
 
 public class World {
 	
-	private Player player = new Player(new Vector2f(0, 0), Main.getSelectedName(), 100, 100, 100);
+	private Player player = new Player(new Vector2f(0, 0), Main.getSelectedName(), 100, 100, 100, 1);
 	
 	private String[] woodTypes = { "Oak", "Birch" };
 
@@ -42,7 +42,7 @@ public class World {
 			}
 		}
 		
-		System.out.println("Done!");
+		System.out.println("Done!\n\n");
 	}
 
 	public Player getPlayer() {
