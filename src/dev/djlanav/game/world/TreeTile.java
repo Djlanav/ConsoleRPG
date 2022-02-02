@@ -1,13 +1,15 @@
 package dev.djlanav.game.world;
 
-public class Tree extends Tile {
-	
+import dev.djlanav.game.tools.Vector2f;
+
+public class TreeTile extends Tile {
+
 	private String woodType;
 	
 	// Break time is the amount of times the tile needs to be hit to yield resources
-	public Tree(String tileType, int breakTime, int tileHP, String woodType) {
-		super(tileType, breakTime, tileHP);
-		
+	public TreeTile(Vector2f position, int tileHP, String woodType) {
+		super(position, tileHP);
+
 		this.woodType = woodType;
 	}
 

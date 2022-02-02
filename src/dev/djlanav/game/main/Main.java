@@ -2,19 +2,20 @@ package dev.djlanav.game.main;
 
 import java.util.Scanner;
 
-import dev.djlanav.game.entities.Player;
-import dev.djlanav.game.tools.Vector2f;
+import dev.djlanav.game.world.World;
 
 public class Main {
 	
 	// Declare objects
-	public static Player player;
+	public static World world;
 	
 	private static String selectedName;
 	
 	private static void init() {
-		player = new Player(new Vector2f(0, 0), selectedName, 100, 100, 100);
-		System.out.println(player.getName());
+		world = new World();
+		world.generateWorld();
+		
+		world.getPlayer().displayStats();
 	}
 	
 	private static void setPlayerName() {
@@ -23,13 +24,13 @@ public class Main {
 		selectedName = nameScanner.nextLine();
 		
 		System.out.println();
-		System.out.println("Your name is " + selectedName + "!\n");
+		System.out.println("Your name is " + selectedName + "!\n\n");
 	}
 	
 	private static void menu() {
 		String choice;
 		
-		System.out.println("=== TEST GAME ===");
+		System.out.println("=== CONSOLERPG v0.0.0 ===");
 		System.out.println("1. Start");
 		System.out.println("2. Exit");
 		
@@ -45,6 +46,10 @@ public class Main {
 		} else {
 			System.out.println("Invalid option");
 		}
+	}
+
+	public static String getSelectedName() {
+		return selectedName;
 	}
 	
 	public static void main(String[] args) {

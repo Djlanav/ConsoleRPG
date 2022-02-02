@@ -1,31 +1,15 @@
 package dev.djlanav.game.world;
 
+import dev.djlanav.game.tools.Vector2f;
+
 public abstract class Tile {
 	
-	private String tileType;
-	private int breakTime;
+	private Vector2f position;
 	private int tileHP;
 	
-	public Tile(String tileType, int breakTime, int tileHP) {
-		this.breakTime = breakTime;
+	public Tile(Vector2f position, int tileHP) {
+		this.setPosition(position);
 		this.tileHP = tileHP;
-		this.tileType = tileType;
-	}
-
-	public String getTileType() {
-		return tileType;
-	}
-
-	public void setTileType(String tileType) {
-		this.tileType = tileType;
-	}
-
-	public int getBreakTime() {
-		return breakTime;
-	}
-
-	public void setBreakTime(int breakTime) {
-		this.breakTime = breakTime;
 	}
 
 	public int getTileHP() {
@@ -34,5 +18,13 @@ public abstract class Tile {
 
 	public void setTileHP(int tileHP) {
 		this.tileHP = tileHP;
+	}
+
+	public Vector2f getPosition() {
+		return position;
+	}
+
+	public void setPosition(Vector2f position) {
+		this.position = position;
 	}
 }
